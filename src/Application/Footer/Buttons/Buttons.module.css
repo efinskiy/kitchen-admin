@@ -1,0 +1,41 @@
+.button{
+    width: 58px;
+    height: 58px;
+    background-color: rgb(247, 247, 247);
+    border-radius: 50%;
+    margin: 6px auto;
+    border: none;
+}
+
+.icon{
+    display: inline-block;
+}
+.cartButton{
+    width: 79px;
+    height: 79px;
+    background: var(--yellow);
+    border-radius: 50%;
+    margin: 9px auto;
+    border: none;
+}
+.cartQuantity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: #141414;
+    position: absolute;
+    top: -15px;
+    margin-left: 50px;
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.active{
+    border: 2px solid var(--green);
+}

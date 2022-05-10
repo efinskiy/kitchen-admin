@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCurrentUser, postAuth } from '../Services/auth'
 import { useState, useEffect } from 'react';
+import css from './auth.module.css';
 
 const Auth = (props) => {
     const {auth} = props;
@@ -38,20 +39,25 @@ const Auth = (props) => {
     };
 
     return (
-        <div>
-            {
-                authState.is_anonymous === true 
-                                            ? <p>Вы не авторизованы</p>
-                                            : <p>Вы авторизованы как {authState.user}</p>
-            }
-            <form>
+        <div className={css.authWrapper}>
                 {
                     authError !== undefined ? <h3>{authError.error}</h3> : false
                 }           
-                <input type="text" value={loginState} onChange={(event) => {setLoginState(event.target.value)}} placeholder='Login' />
-                <input type="password" value={passwordState} onChange={(event) => {setPasswordState(event.target.value)}} placeholder='Password' />
-                <input type="button" onClick={() => sendAuth(loginState, passwordState)} value="Войти" />
-            </form>
+                <div class={css.login_container}>
+                <section class={css.login}>
+                    <header>
+                    <h2>Столовая</h2>
+                    <h4>Авторизация</h4>
+                    </header>
+                    <div class={css.login_form}>
+                    <input type="text" value={loginState} onChange={(event) => {setLoginState(event.target.value)}} class={css.login_input} placeholder="Логин" required autofocus/>
+                    <input type="password" value={passwordState} onChange={(event) => {setPasswordState(event.target.value)}} class={css.login_input} placeholder="Пароль" required/>
+                    <div class={css.submit_container}>
+                        <button onClick={() => sendAuth(loginState, passwordState)} class={css.login_button}>Войти</button>
+                    </div>
+                    </div>
+                </section>
+                </div>
         </div>
     );
 }
