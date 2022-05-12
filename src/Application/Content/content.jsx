@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './content.module.css';
 import Orders from './Modules/Orders/orders';
+import Settings from './Modules/Settings/settings';
 
 const Content = (props) => {
     const {switchprops, ordersState} = props;
@@ -10,7 +11,9 @@ const Content = (props) => {
     return (
         <div className={css.contentWrapper}>
             {
-                fswitch.orders === true ? <Orders ordersState={[orders, setOrders]}/> : false
+                fswitch.orders === true ? <Orders ordersState={[orders, setOrders]}/> :
+                fswitch.settings === true ? <Settings/> : 
+                false
             }
         </div>
     );
