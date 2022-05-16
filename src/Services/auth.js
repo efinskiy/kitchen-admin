@@ -1,20 +1,20 @@
 
 export async function getCurrentUser() {
     
-    const request = await fetch('api/v1/admin/whoami', {
+    let request = await fetch('api/v1/admin/whoami', {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
         }
     })
 
-    const json = await request.json()
+    let json = await request.json()
 
     return json
 };
 
 export async function postAuth(login, password){
-    const request = await fetch('api/v1/admin/login', {
+    let request = await fetch('api/v1/admin/login', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -24,8 +24,17 @@ export async function postAuth(login, password){
             password: password
         })
     })
-    const json = await request.json();
+    let json = await request.json();
     return json;
 };
 
-
+export async function logout(){
+    let request = await fetch('api/v1/admin/logout', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    let json = await request.json();
+    return json;
+}

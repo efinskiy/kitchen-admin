@@ -1,0 +1,143 @@
+.order{
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
+}
+
+
+.info_top{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 12px;
+}
+
+.info_main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info_date{
+    font-size: small;
+    color: gray;
+    font-weight: 200;
+}
+
+.itemsList{
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+}
+
+.hr{
+    margin-top: 6px;
+    display: block; 
+    height: 1px;
+    border: 0; 
+    border-top: 1px solid #ccc;
+    margin: 1em 0; 
+    padding: 0;
+}
+
+.controlButtons{
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+}
+
+.btnConfirm{
+    background-color: #FFC404;
+    /* margin: 0 auto; */
+    text-align: center;
+    border-radius: 16px;
+    bottom: 100px;
+    width: 100%;
+    height: 32px;
+    cursor: pointer;
+    margin: 0 8px 0 8px;
+}
+
+.btnClose{
+    background-color: #47b701;
+    /* margin: 0 auto; */
+    text-align: center;
+    border-radius: 16px;
+    bottom: 100px;
+    width: 100%;
+    height: 32px;
+    cursor: pointer;
+    margin: 0 8px 0 8px;
+}
+
+.btnCancel{
+    background-color: #d40000;
+    /* margin: 0 auto; */
+    text-align: center;
+    border-radius: 16px;
+    bottom: 100px;
+    width: 100%;
+    height: 32px;
+    cursor: pointer;
+    margin: 0 8px 0 8px;
+}
+
+.button_text{
+    font-weight: 500;
+    font-size: 14px;
+    padding-top: 6px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;
+    height: 100%;
+}
+
+.totalBlock{
+    display: flex;
+}
+
+.receiptBlock{
+    padding-left: 14px;
+}
+
+.info_pin{
+    padding-top: 14px;
+}
+
+.receiptLink{
+    text-decoration-color: black;
+    -webkit-text-fill-color: black;
+    font-weight: 500;
+    /* text-decoration: none; */
+    text-decoration: underline dashed black 1px;
+}
+
+.total{
+    font-weight: 500;
+}
+
+.statusWaitPayment{
+    color: #d35400;
+    font-weight: 500;
+}
+
+.statusWaitConfirmation{
+    color: var(--yellow);
+    font-weight: 500;
+}
+
+.statusReady{
+    color: #5AE004;
+    font-weight: 500;
+}
+
+.statusFinal{
+    color: #47b701;
+    font-weight: 500;
+}
+
+.statusCanceled{
+    color: #E8043D;
+    font-weight: 500;
+}

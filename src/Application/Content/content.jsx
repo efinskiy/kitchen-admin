@@ -1,18 +1,22 @@
-import React from 'react';
+import Settings from './Modules/Settings/settings';
 import css from './content.module.css';
 import Orders from './Modules/Orders/orders';
-import Settings from './Modules/Settings/settings';
+import React from 'react';
 
 const Content = (props) => {
-    const {switchprops, ordersState} = props;
-    const [fswitch, setfSwitch] = switchprops;
-    const [orders, setOrders] = ordersState;
+    const {user, tabs} = props;
 
     return (
         <div className={css.contentWrapper}>
             {
-                fswitch.orders === true ? <Orders ordersState={[orders, setOrders]}/> :
-                fswitch.settings === true ? <Settings/> : 
+                tabs.ordersCurrent === true ? <Orders/> :
+                tabs.ordersPast === true ? <div>История заказов</div> :
+                tabs.productsWarehouse === true ? <div>Остатки товаров</div> :
+                tabs.productsAdd === true ? <div>Добавить товар</div> :
+                tabs.productsCategories === true ? <div>Категории товаров</div> :
+                tabs.settingsMain === true ? <Settings user={user}/> : 
+                tabs.settingsPayments === true ? <div>Защищенные настройки</div>:
+                tabs.settingsUsers === true ? <div>Пользователи</div> :
                 false
             }
         </div>

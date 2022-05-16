@@ -23,7 +23,8 @@ function App() {
     <div>
       {
         loading.loaded === true && authState !== undefined ?
-            authState.is_anonymous === true ? <Auth auth={[authState, setAuthState]}/> 
+            authState.is_anonymous === true 
+            ? <Auth auth={[authState, setAuthState]}/> 
             : <Application auth={[authState, setAuthState]}/>
           : <Loader/>
       }

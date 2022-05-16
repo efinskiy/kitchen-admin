@@ -1,0 +1,16 @@
+.settingsBlock{
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settingName{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.checkbox{
+    width: 24px;
+    height: 24px;
+}

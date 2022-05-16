@@ -5,6 +5,7 @@
     border-radius: 50%;
     margin: 6px auto;
     border: none;
+    z-index: 999;
 }
 
 .icon{
@@ -38,4 +39,8 @@
 
 .active{
     border: 2px solid var(--green);
+}
+
+.activeSub{
+    border: 2px solid var(--yellow);
 }

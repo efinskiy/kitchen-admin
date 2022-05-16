@@ -2,8 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { changeSettings, getSettings } from '../../../../Services/settings';
 import Loader from '../../../Loader/loader';
+import css from './settings.module.css'
 
 const Settings = (props) => {
+    const {user} = props
     const [settings, setSettings] = useState();
     const [kitchenStatus, setKitchenStatus] = useState(false);
 
@@ -18,7 +20,6 @@ const Settings = (props) => {
     }, [settings]);
 
     const assignStatus = () => {
-        // settings.kitchenStatus !== undefined ? setKitchenStatus(settings.kitchenStatus.value) : false
         if (settings !== undefined){
             setKitchenStatus(
                 settings.kitchenStatus.value === "available" ? true : false
@@ -46,9 +47,9 @@ const Settings = (props) => {
         isLoaded() === true ?
         <div className='settings'>
             <h3>Настройки</h3>
-            <div className="">
-            <span>Включить столовую</span>
-            <input type="checkbox" checked={kitchenStatus} onChange={handleCheckboxKitchenStatus}/>
+            <div className={css.settingsBlock}>
+                <span className={css.settingsName}>Включить столовую</span>
+                <input type="checkbox" className={css.checkbox} checked={kitchenStatus} onChange={handleCheckboxKitchenStatus}/>
             </div>
         </div>
         : <Loader/>

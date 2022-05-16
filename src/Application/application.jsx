@@ -1,36 +1,60 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { getCurrentUser } from '../Services/auth';
-import { getNotCompleted } from '../Services/order';
 import Loader from './Loader/loader';
-import { Footer } from './Footer/footer';
 import css from './application.module.css';
 import Content from './Content/content';
+import { Footer } from './Footer/footer';
+import { useState, useEffect, useRef } from 'react';
+import io from 'socket.io-client'
+
+
 
 const Application = (props) => {
     const {auth} = props;
-
     const [user, setUser] = auth;
-    const [orders, setOrders] = useState();
     const [fswitch, setfSwitch] = useState({orders: true, products: false, settings: false, categories: false})
+    const [additionalFooter, setAdditionalFooter] = useState({orders: false, products: false, settings: false, categories: false})
+    const [tabsState, setTabsState] = useState({
+        ordersCurrent: true, 
+        ordersPast: false,
+        productsWarehouse: false,
+        productsAdd: false, 
+        settingsMain: false, 
+        settingsUsers: false, 
+        settingsPayments: false
+    })
+
+    const [socketMessages, setSocketMessages] = useState([]);
+
+
+    const socketUrl = "https://admin.stolovaya.online/socket.io";
+    const roomId = 'admin';
+    const socketRef = useRef(null)
 
     useEffect(() => {
-        getNotCompleted().then((json) => {
-            setOrders(json)
-        })
+        socketRef.current = io(socketUrl)
+
+          socketRef.current.emit('info', JSON.stringify({'status': 'connected'}))
+
+          socketRef.current.on('connectConfirm', (message) => {
+              console.log(message)
+          })
+        
+        
+          return () => {
+            socketRef.current.disconnect()
+        };
     }, []);
+    
+
 
     return (
         <div className={css.application}>
 
             {
-                user !== undefined && orders !== undefined ?
+                user !== undefined ?
                     [
-                    <Content 
-                        switchprops={[fswitch, setfSwitch]} 
-                        ordersState={[orders, setOrders]}
-                    />,
-                    <Footer switchprops={[fswitch, setfSwitch]}/>
+                    <Content switchprops={[fswitch, setfSwitch]} user = {user} tabs= {tabsState}/>,
+                    <Footer switchprops={[fswitch, setfSwitch]} tabsprops={[tabsState, setTabsState]} addprops={[additionalFooter, setAdditionalFooter]} userstate={[user, setUser]}/>
                     ]
                 :
                     <Loader/>
