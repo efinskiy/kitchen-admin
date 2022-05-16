@@ -60,3 +60,16 @@ export async function closeOrder(id){
     
     return json
 }
+
+export async function historyOrders(){
+    let request = await fetch('api/v1/admin/order/history', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+
+    let json = await request.json()
+    return json
+
+}
