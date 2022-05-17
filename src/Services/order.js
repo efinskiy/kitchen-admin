@@ -25,6 +25,15 @@ export async function confirmOrder(id){
 
     let json = await request.json()
 
+    if (json.code === 200){
+        return json;
+    }
+    if (json.code === 201){
+        let alertString = "Недостаточно товара для подтверждения заказа\nЗаказ был отменен.\n";
+        json.items.map((item) => alertString+=`${item.title} | ${item.before}шт -> ${item.after}шт\n`)
+        alert(alertString);
+    }
+
     return json
 }
 
