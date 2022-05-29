@@ -6,14 +6,14 @@ import {getNotCompleted} from '../../../../Services/order';
 import Loader from '../../../Loader/loader';
 
 const Orders = (props) => {
-    // const {ordersState} = props;
-    const [orders, setOrders] = useState();
+    const {ordersState} = props;
+    const [orders, setOrders] = ordersState;
 
-    useEffect(() => {
-        getNotCompleted().then((json) => {
-            setOrders(json)
-        })
-    }, []);
+    // useEffect(() => {
+    //     getNotCompleted().then((json) => {
+    //         setOrders(json)
+    //     })
+    // }, []);
 
     const isLoaded = () =>{
         if (orders !== undefined){

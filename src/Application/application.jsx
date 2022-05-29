@@ -22,29 +22,28 @@ const Application = (props) => {
         settingsUsers: false, 
         settingsPayments: false
     })
+    const [orders, setOrders] = useState({orders: []});
 
-    const [socketMessages, setSocketMessages] = useState([]);
 
 
-    const socketUrl = "https://admin.stolovaya.online/socket.io";
-    const roomId = 'admin';
-    const socketRef = useRef(null)
+    const socketUrl = "http://admin.stolovaya.online";
+    const setOrdersListner = (response) => {
+        console.log(response);
+        // if (response.orders.length > orders.orders.length) {console.log('new order')}
+        // console.log(response.orders.length, orders.orders.length)
+        // console.log(orders)
+        setOrders(response)
+      };
+
+    const [socket, setSocket] = useState(io.connect(socketUrl, { rejectUnauthorized: false }));
+    socket.on("sendingNotCompleted", setOrdersListner);
 
     useEffect(() => {
-        socketRef.current = io(socketUrl)
-
-          socketRef.current.emit('info', JSON.stringify({'status': 'connected'}))
-
-          socketRef.current.on('connectConfirm', (message) => {
-              console.log(message)
-          })
+        const interval = setInterval( () => {
+            socket.emit('fetchNotCompleted')
+        }, 10000)
         
-        
-          return () => {
-            socketRef.current.disconnect()
-        };
-    }, []);
-    
+      }, []);
 
 
     return (
@@ -53,7 +52,7 @@ const Application = (props) => {
             {
                 user !== undefined ?
                     [
-                    <Content switchprops={[fswitch, setfSwitch]} user = {user} tabs= {tabsState}/>,
+                    <Content switchprops={[fswitch, setfSwitch]} user = {user} tabs= {tabsState} ordersState={[orders, setOrders]}/>,
                     <Footer switchprops={[fswitch, setfSwitch]} tabsprops={[tabsState, setTabsState]} addprops={[additionalFooter, setAdditionalFooter]} userstate={[user, setUser]}/>
                     ]
                 :

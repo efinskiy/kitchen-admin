@@ -5,12 +5,13 @@ import Orders from './Modules/Orders/orders';
 import History from './Modules/History/history';
 
 const Content = (props) => {
-    const {user, tabs} = props;
+    const {user, tabs, ordersState} = props;
+    const [orders, setOrders] = ordersState;
 
     return (
         <div className={css.contentWrapper}>
             {
-                tabs.ordersCurrent === true ? <Orders/> :
+                tabs.ordersCurrent === true ? <Orders ordersState={[orders, setOrders]}/> :
                 tabs.ordersPast === true ? <History/> :
                 tabs.productsWarehouse === true ? <div>Остатки товаров</div> :
                 tabs.productsAdd === true ? <div>Добавить товар</div> :
