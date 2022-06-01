@@ -29,14 +29,19 @@ const Application = (props) => {
 
     const setOrdersListner = (response) => {
         if (checkLength(response)){
-            setOrders(response);
             console.log(response, orders);
+            setOrders(response);
         }
       };
     
     useEffect(() => {
         socket.on("sendingNotCompleted", setOrdersListner);
-    }, [])
+
+        return function cleanup (){
+            socket.removeAllListeners('sendingNotCompleted');
+            console.log('listners cleanup')
+        }
+    }, [orders])
 
     useEffect(() => {
         const interval = setInterval( () => {

@@ -23,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       {
         // Грязь. Ждем когда дойдут промисы с данными
         loading.loaded === true && authState !== undefined && socket !== undefined ?
@@ -32,7 +32,7 @@ function App() {
             : <Application auth={[authState, setAuthState]} socket={socket}/>
           : <Loader/>
       }
-    </div>
+    </>
   );
 }
 
