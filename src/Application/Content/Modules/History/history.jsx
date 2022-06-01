@@ -14,7 +14,7 @@ const History = () => {
     }, [])
 
     return (
-        isLoaded(history) == true ?
+        isLoaded(history)?
         <div className={css.ordersHistory}>
             <h3 className={css.ordersTitle}>История заказов</h3>
             <div className={css.activeOrders}>

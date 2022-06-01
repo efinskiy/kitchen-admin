@@ -6,7 +6,7 @@ const Product = (props) => {
     return (
         <div className={css.product}>
             <div className={css.imgWrap}>
-                <div style={{backgroundImage: 'url(img)'.replace('img', "/api/v1/menu/img?p="+item.id)}} className={css.imgContainer}></div>
+                <div style={{backgroundImage: 'url(img)'.replace('img', "/api/v1/files/"+item.img)}} className={css.imgContainer}></div>
             </div>
             <div className={css.productInfo}>
                 <div className={css.productTitle}>

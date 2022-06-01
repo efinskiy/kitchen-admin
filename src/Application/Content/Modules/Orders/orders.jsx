@@ -4,30 +4,25 @@ import Order from './order/order'
 import { useState, useEffect } from 'react';
 import {getNotCompleted} from '../../../../Services/order';
 import Loader from '../../../Loader/loader';
+import { isLoaded } from '../../utils';
 
 const Orders = (props) => {
     const {ordersState} = props;
     const [orders, setOrders] = ordersState;
 
-    // useEffect(() => {
-    //     getNotCompleted().then((json) => {
-    //         setOrders(json)
-    //     })
-    // }, []);
-
-    const isLoaded = () =>{
-        if (orders !== undefined){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    // const isLoaded = () =>{
+    //     if (orders !== undefined){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 
 
 
 
     return (
-        isLoaded() === true ?
+        isLoaded(orders) === true ?
         <div className='orders'>
             <h3 className={css.ordersTitle}>Активные заказы</h3>
             <div className={css.activeOrders}>
@@ -35,7 +30,7 @@ const Orders = (props) => {
                 orders.orders.length === 0 ?
                 <p>Активные заказы отсутствуют</p>
                 :
-                orders.orders.map(order => <Order order={order} setOrders = {setOrders}/>)
+                orders.orders.map(order => <Order key={order.id} order={order} setOrders = {setOrders}/>)
             }
             </div>
         </div>
