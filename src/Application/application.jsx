@@ -1,17 +1,19 @@
 import React, { useCallback } from 'react';
+import useSound from 'use-sound';
 import Loader from './Loader/loader';
 import css from './application.module.css';
 import Content from './Content/content';
 import { Footer } from './Footer/footer';
 import { useState, useEffect, useRef } from 'react';
-
+// import sfx from '../bell-sound.mp3';
 
 
 const Application = (props) => {
     const {auth, socket} = props;
     const [user, setUser] = auth;
-    const [fswitch, setfSwitch] = useState({orders: true, products: false, settings: false, categories: false})
-    const [additionalFooter, setAdditionalFooter] = useState({orders: false, products: false, settings: false, categories: false})
+    const [fswitch, setfSwitch] = useState({orders: true, products: false, settings: false, categories: false});
+    const [additionalFooter, setAdditionalFooter] = useState({orders: false, products: false, settings: false, categories: false});
+    const [play] = useSound('bell-sound.mp3');
     const [tabsState, setTabsState] = useState({
         ordersCurrent: true, 
         ordersPast: false,
@@ -20,7 +22,7 @@ const Application = (props) => {
         settingsMain: false, 
         settingsUsers: false, 
         settingsPayments: false
-    })
+    });
     const [orders, setOrders] = useState({orders: []});
 
     const checkLength = useCallback((response) => {
@@ -28,8 +30,10 @@ const Application = (props) => {
     }, [orders]);
 
     const setOrdersListner = (response) => {
-        if (checkLength(response)){
-            console.log(response, orders);
+        if (response.orders.length > orders.orders.length){
+            play();
+            setOrders(response);
+        }else if (response.orders.length < orders.orders.length){
             setOrders(response);
         }
       };
