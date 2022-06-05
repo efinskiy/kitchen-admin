@@ -1,0 +1,50 @@
+.imgWrap{
+    height: 64px;
+    width: 64px;
+}
+
+.productWrapper{
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+}
+
+.imgContainer{
+    width: 64px;
+    height: 64px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 25%;
+}
+
+.productInfo{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-left: 14px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.productText{
+    display: flex;
+    flex-direction: column;
+}
+
+.productStorage, .productReserved{
+    color: gray;
+    padding-left: 8px;
+}
+.buttonWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.editButton{
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--yellow);
+    background-color: inherit;
+    padding: 15%;
+}

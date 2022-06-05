@@ -1,0 +1,23 @@
+.moduleTitle{
+    margin-bottom: 24px;
+}
+
+.category{
+    display: flex;
+    justify-content: space-between;
+}
+
+.categorySelect{
+    width: 150px;
+    border: none;
+    background-color: inherit;
+    border-bottom: 2px solid var(--yellow);
+    outline: none;
+    color: black;
+    padding-left: 4px;
+    padding-bottom: 4px;
+}
+
+.productsList{
+    margin-top: 24px;
+}

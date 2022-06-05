@@ -5,15 +5,16 @@ import css from './application.module.css';
 import Content from './Content/content';
 import { Footer } from './Footer/footer';
 import { useState, useEffect, useRef } from 'react';
+import io from 'socket.io-client'
 // import sfx from '../bell-sound.mp3';
 
 
 const Application = (props) => {
-    const {auth, socket} = props;
+    const {auth} = props;
     const [user, setUser] = auth;
     const [fswitch, setfSwitch] = useState({orders: true, products: false, settings: false, categories: false});
     const [additionalFooter, setAdditionalFooter] = useState({orders: false, products: false, settings: false, categories: false});
-    const [play] = useSound('bell-sound.mp3');
+    const [play] = useSound('/bell-sound.mp3');
     const [tabsState, setTabsState] = useState({
         ordersCurrent: true, 
         ordersPast: false,
@@ -25,9 +26,12 @@ const Application = (props) => {
     });
     const [orders, setOrders] = useState({orders: []});
 
-    const checkLength = useCallback((response) => {
-        return response.orders.length > orders.orders.length
-    }, [orders]);
+    const [socket, setSocket] = useState();
+    const socketUrl = "http://admin.stolovaya.online";
+
+    useEffect(()=> {
+        setSocket(io.connect(socketUrl, { rejectUnauthorized: false }))
+      }, [])
 
     const setOrdersListner = (response) => {
         if (response.orders.length > orders.orders.length){
@@ -39,13 +43,15 @@ const Application = (props) => {
       };
     
     useEffect(() => {
-        socket.on("sendingNotCompleted", setOrdersListner);
-
-        return function cleanup (){
-            socket.removeAllListeners('sendingNotCompleted');
-            console.log('listners cleanup')
+        if (socket!==undefined){
+            socket.on("sendingNotCompleted", setOrdersListner);            
+            return function cleanup (){
+                socket.removeAllListeners('sendingNotCompleted');
+                console.log('listeners cleanup')
+            }    
         }
-    }, [orders])
+        
+    }, [orders, socket])
 
     useEffect(() => {
         const interval = setInterval( () => {
@@ -54,7 +60,7 @@ const Application = (props) => {
             }
         }, 1000)
         return () => clearInterval(interval);
-      }, []);
+      }, [socket]);
 
 
     return (

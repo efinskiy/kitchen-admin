@@ -3,6 +3,7 @@ import css from './content.module.css';
 import Settings from './Modules/Settings/settings';
 import Orders from './Modules/Orders/orders';
 import History from './Modules/History/history';
+import Storage from './Modules/Storage/storage';
 
 const Content = (props) => {
     const {user, tabs, ordersState} = props;
@@ -13,7 +14,7 @@ const Content = (props) => {
             {
                 tabs.ordersCurrent === true ? <Orders ordersState={[orders, setOrders]}/> :
                 tabs.ordersPast === true ? <History/> :
-                tabs.productsWarehouse === true ? <div>Остатки товаров</div> :
+                tabs.productsWarehouse === true ? <Storage/> :
                 tabs.productsAdd === true ? <div>Добавить товар</div> :
                 tabs.productsCategories === true ? <div>Категории товаров</div> :
                 tabs.settingsMain === true ? <Settings user={user}/> : 
