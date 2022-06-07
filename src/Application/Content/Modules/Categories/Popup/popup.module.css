@@ -99,7 +99,11 @@
     border: none;
     background-color: var(--yellow);
     user-select: none;
-    cursor: pointer;
+}
+
+.danger{
+    background-color: var(--red);
+    color: var(--white);
 }
 
 .button:active{
@@ -133,10 +137,6 @@
     width: 100%;
 }
 
-.editModule{
-    margin-bottom: 8px;
-}
-
 .categorySelect{
     width: 150px;
     border: none;
@@ -147,6 +147,10 @@
     padding-left: 4px;
     padding-bottom: 4px;
     padding-top: 4px;
+}
+
+.editModule{
+    margin-bottom: 8px;
 }
 
 .imgWrapper{
@@ -162,4 +166,24 @@
     aspect-ratio: 16/9; 
     background-size: cover;
     border-radius: 20px;
+}
+
+.visibleBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.moduleInputCheckbox{
+    width: 24px;
+    height: 24px;
+}
+
+.yes{
+    color: var(--green);
+}
+
+.no{
+    color: var(--red);
 }

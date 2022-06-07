@@ -138,6 +138,6 @@
 }
 
 .statusCanceled{
-    color: #E8043D;
+    color: var(--red);
     font-weight: 500;
 }

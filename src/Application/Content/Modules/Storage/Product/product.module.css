@@ -44,7 +44,8 @@
 .editButton{
     width: 40px;
     height: 40px;
-    border: 2px solid var(--yellow);
+    border: none;
     background-color: inherit;
     padding: 15%;
+    cursor: pointer;
 }

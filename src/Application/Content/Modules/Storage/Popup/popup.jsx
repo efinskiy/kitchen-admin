@@ -33,7 +33,7 @@ const Popup = (props) => {
         <div className={classNames({[css.enabled]: popupState}, css.productPopup)}>
             <div className={css.content}>
                 <div className={css.header}>
-                    <h2 className={css.title}>{product.name}</h2>
+                    <h2 className={css.title}>Редактирование товара</h2>
                     <span className={css.close} onClick={()=>setPopupState(false)}>&times;</span>
                 </div>
                 <div className={css.body}>
@@ -49,7 +49,7 @@ const Popup = (props) => {
                             </div>
                             <p className={css.p}>Зарезервировано: {product.reserved} ед.</p>
                             <p className={css.p}>Кол-во продаж: {product.sells}</p>
-                            <button className={css.button} onClick={ ()=> updateBalance(product.id, balanceState).then((json)=> {alert('Изменения внесены'); setChangesDetector(changesDetector+1)})}>Изменить остаток</button>
+                            <button className={css.button} onClick={ ()=> updateBalance(product.id, balanceState).then((json)=> {alert('Изменения внесены'); setChangesDetector((prev)=> prev+1)})}>Изменить остаток</button>
                         </div>
                         <div className={css.productBlock}>
                             <h3 className={css.blockTitle}>Расширенное редактирование</h3>
@@ -88,8 +88,7 @@ const Popup = (props) => {
                             <div className={css.editModule}>
                                 <button className={css.button} onClick={()=> {
                                     // console.log(product.id)
-                                    updateProduct(product.id, nameState, weightState, imgState, priceState, categoryState).then((response)=> response === true ? alert('Изменения успешно внесены.') : alert('При выполенении запроса произошла ошибка.'))
-                                    setChangesDetector(changesDetector+1);
+                                    updateProduct(product.id, nameState, weightState, imgState, priceState, categoryState).then((response)=> response === true ? (alert('Изменения успешно внесены.'), setChangesDetector((prev)=> prev+1)) : alert('При выполенении запроса произошла ошибка.'))
                                 }}>Сохранить изменения</button>
                             </div>
 

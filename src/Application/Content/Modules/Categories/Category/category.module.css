@@ -1,0 +1,42 @@
+.category{
+    width: 100%;
+    padding: 8px 0px;
+}
+
+.categoryWrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categoryLeft{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 18px;
+}
+
+.categorySub{
+    display: flex;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.yes{
+    color: var(--green);
+}
+
+.no{
+    color: var(--red);
+}
+.editButton{
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: inherit;
+    padding: 15%;
+    cursor: pointer;
+}
