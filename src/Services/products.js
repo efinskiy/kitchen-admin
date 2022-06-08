@@ -68,3 +68,25 @@ export async function updateProduct(id, name, weight, img, price, category){
         return false
     }
 }
+
+export async function addProduct(title, category_id, weight, price, img){
+    let request = await fetch('api/v1/admin/product', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            name: title,
+            price: price,
+            category: category_id,
+            weight: weight,
+            img: img
+        })
+    });
+
+    let json = await request.json()
+
+    return json.status === 200;
+
+
+}

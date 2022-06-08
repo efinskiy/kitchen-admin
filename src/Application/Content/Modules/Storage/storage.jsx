@@ -11,6 +11,7 @@ const Storage = () => {
     const [productsList, setProductsList] = useState([])
     const [selectedCategory, setSelectedCategory] = useState(-1);
     const [changesDetector, setChangesDetector] = useState(0);
+    const [popupAction, setPopupAction] = useState("update");
 
     const [popupActive, setPopupActive] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
@@ -33,7 +34,7 @@ const Storage = () => {
 
     return (
         <>
-            {popupActive === true ? <Popup popup={[popupActive, setPopupActive]} product={selectedProduct} categoryList={categoryList} changes={[changesDetector, setChangesDetector]}/> : false}
+            {popupActive === true ? <Popup popup={[popupActive, setPopupActive]} product={selectedProduct} categoryList={categoryList} changes={[changesDetector, setChangesDetector]} action={popupAction}/> : false}
             <div className={css.moduleTitle}>
                 <h3>Товары</h3>
             </div>
@@ -46,9 +47,10 @@ const Storage = () => {
             </div>
             <div className={css.productsList}>
                 {
-                    productsList.length !== 0 ? productsList.map(product => <Product key={product.id} product={product} popup={setPopupActive} popupProduct={setSelectedProduct}/>) : <p>Список пуст</p>
+                    productsList.length !== 0 ? productsList.map(product => <Product key={product.id} product={product} popup={setPopupActive} popupProduct={setSelectedProduct} setPopupAction={setPopupAction}/>) : <p>Список пуст</p>
                 }
             </div>
+            <button className={css.button} onClick={()=> {setPopupAction("add"); setPopupActive(true)}}>Добавить</button>
         </>
     );
 }

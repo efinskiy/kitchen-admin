@@ -3,7 +3,7 @@ import css from './product.module.css';
 import { useState } from 'react';
 
 const Product = (props) => {
-    const {product, popup, popupProduct}= props
+    const {product, popup, popupProduct, setPopupAction}= props
     return (
         <div className={css.productWrapper}>
             <div className={css.imgWrap}>
@@ -28,7 +28,7 @@ const Product = (props) => {
                     </div>
                 </div>
                 <div className={css.buttonWrapper}>
-                    <button className={css.editButton} onClick={() => {popupProduct(product); popup(true)}}><img src="/icons/light/pen.svg"/></button>
+                    <button className={css.editButton} onClick={() => {setPopupAction("update"); popupProduct(product); popup(true)}}><img src="/icons/light/pen.svg"/></button>
                 </div>
             </div>
         </div>
