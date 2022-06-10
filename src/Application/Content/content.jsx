@@ -5,6 +5,7 @@ import Orders from './Modules/Orders/orders';
 import History from './Modules/History/history';
 import Storage from './Modules/Storage/storage';
 import Categories from './Modules/Categories/categories';
+import Users from './Modules/Users/users';
 
 const Content = (props) => {
     const {user, tabs, ordersState} = props;
@@ -20,7 +21,7 @@ const Content = (props) => {
                 tabs.productsCategories === true ? <Categories/> :
                 tabs.settingsMain === true ? <Settings user={user}/> : 
                 tabs.settingsPayments === true ? <div>Защищенные настройки</div>:
-                tabs.settingsUsers === true ? <div>Пользователи</div> :
+                tabs.settingsUsers === true ? <Users currentUser={user}/> :
                 false
             }
         </div>

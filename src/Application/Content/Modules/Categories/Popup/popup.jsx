@@ -24,7 +24,6 @@ const Popup = (props) => {
         }
     }, [])
     return (
-        <>
             <div className={classNames({[css.enabled]: popupState}, css.productPopup)}>
             {confirmationPopup === true ? <Confirmation currentPopup={[confirmationPopup, setConfirmationPopup]} childPopup={[popupState, setPopupState]} category={category} changes={changes}/>: null}
                 <div className={css.content}>
@@ -82,7 +81,6 @@ const Popup = (props) => {
                     </div>
                 </div>
             </div>
-        </>
     );
 }
 
